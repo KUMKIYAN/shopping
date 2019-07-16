@@ -2,11 +2,13 @@ package com.myproduct.orders;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.myproduct.products.Product;
 import com.myproduct.users.User;
 
 import javax.persistence.*;
 import java.util.List;
+
 
 @Entity
 @SequenceGenerator(name="seq", initialValue=1001, allocationSize=2000)

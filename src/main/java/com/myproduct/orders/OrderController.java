@@ -58,15 +58,14 @@ public class OrderController {
         Optional<User> userOptional = userRepository.findById(id);
         User user = userOptional.get();
         order.setUser(user);
+        order.getProducts().stream().forEach(prod -> {
+            Optional<Product> productOptional = productRepository.findById(prod.getId());
+            Product product = productOptional.get();
+            product.setQty(prod.getQty());
+            order.setOrderTotal(order.getOrderTotal() + product.getPrice() * product.getQty());
+        });
 
-        Optional<Product> productOptional = productRepository.findById(order.getProducts().stream().findFirst().get().getId());
-        Product product = productOptional.get();
-        product.setQty(order.getProducts().stream().findFirst().get().getQty());
-        System.out.println(product);
-        System.out.println(product.getPrice() * product.getQty());
-        order.setOrderTotal(product.getPrice() * product.getQty());
         orderRepository.save(order);
-
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

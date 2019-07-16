@@ -1,10 +1,94 @@
-# shopping
+Class 1:
+https://github.com/in28minutes/spring-microservices
+
+Class 5:
+W3 definition: software system desinged to support interoperatble machine to machine interaction over a network.
+
+
+webservice basic concept is request and response.
+
+Service Defintion -> request and response format
+					 structure of request
+					 structure of response
+					 how to call the service ? end points
+
+
+key terminalogies: 	1. request and response
+					2. message exchange format -> xml and json
+
+
+SOAP : data exchange format : request and reponse format will be xml
+		transport can be http or mq
+		service defintion is WSDL -> web service definition language.
+		no caching
+
+REST : representional state transfer
+
+http  methods, get post, put and delete
+http  status code, 200 or 404
+
+no restrictions on Data exchage format : json is popular
+transport : only HTTP
+service defintion : WADL/swagger - > Web application defintion language.
+caching
+
+class 11:
+start.spring. -> all all your depandacies and create project and import into your IDE.
+
+Key abstractions are resources.
+/users/kiyan/todos
+/users/kiyan/todos/1
+/users/kiyan
+
+@SpringBootApplication and SpringApplication.run - > starting point of spring boot applicaiton will be placed on top of main method class.
+@RestController at class level and @RequestMapping(method, path) at method level. method=RequestMethod.GET, path="/hello-world". <- URI/Resource.
+
+a RequestMapping can return a simple string/bean back/ object. -> RestController (SpringbootAutoConfiguration) is responsible to present data in the json format.
+
+add @PathVariable annotation in the method parameters.
+
+DAO is reponsible for connect the db and get data and also has all possible methods and use these methods in RestCotroller class.
+@component and @Autowired will have connection. we create object for component class without using new operator by placing autowired annotation on top of variable.
+
+inorder to return created uri for post method implemetation use
+URI location = ServiceUriCompnentBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(SavedUser.getId().toUri());
+return ResponseEntity.created(location).build(); -> we get response code 201. -> in headers we can see uri in the form of get request for this post method operation.
+apart from created (response code 201) we have many other methods at ResponseEntity dot.
+
+
+@RequestBody will take payload assigne to variable in method definition. RequestBody method must be application/json format.
+
+we need to create default constructor along witn user defined argument constructors for each bean.
+
+
+Response status not found ->404 not found. Create runtime exception class and add @ResponseStatus(HttpStatus.NOT_FOUND) at class level.
+
+For all exceptions maintain simple common structure to maintain standard.
+
+for this step 1 is create exception response bean class.
+next create a child class for a predefined spring class ResponseEntityExceptionHandler and @RestController and @ControllerAdvise and write a method with annotation @ExceptionHandler(Exception.class) and create object for exception response bean class creted in step1 and return response entity.
+
+@Valid annonation we use at the method parameters. and we add valiation annotations like @Size(min=2, message="name should have atleast 2 charters") @Past annoations for Date at bean level.
+
+@Size(min=2, message="name should have atleast 2 charters") -> this message will displayed as part of response. getBindingResult method has too many methods for customization.
+
+we have many validtor in the "hibernet validator" and "validation api" jars come as part of starter-web dependacies.
+
+as part request response, if want to see meaning full exception, override handleMethodArgumentNotValid method.
+
+
+HATEOAS -> additonal info as part of response.
+Hypermedia as the engine of application state.
+
+here we need to perform 3 things.
+Resource -> create Resource object with generics for which resource/controller we need to this.
+ControllerLinkBuilder -> on which resource/controller method you want to give additional information
+resource.add -> add that to resource object and return to that resource.
 
 
 
-
-
-
+logging.level.org.springframework = debug
+spring.jackson.serialization.write-dates-as-timestamps=false.
 
 
 Class 30
@@ -230,8 +314,15 @@ in resources folder create data.sql - that automatically insert the data into ta
 localhost:8080/h2-console
 jdbc url field should be present. jdbc:h2:mem:testdb
 
-
 *********
+
+@ManyToOne -> many order have one relationship with User
+and
+@OneToMany -> one user have many order relationship
+
+annotations add dables automatically in DB
+
+@ManyToMany -> Many Orders have many Product relationship.
 
 component and Autowired annotions should be in sync
 
@@ -262,3 +353,63 @@ exceptions search - on the resources apply verb/actions
 
 https://github.com/in28minutes/spring-microservices/blob/master/02.restful-web-services/pom.xml
 https://github.com/in28minutes/spring-microservices/tree/master/02.restful-web-services/src/main/java/com/in28minutes/rest/webservices/restfulwebservices
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+
+____________________________________________________________________________________________
+
+Spring boot by jetbrains Koushik.
+
+production ready application in matter of mins. - > Restful application.
+
+in pom.xml add -> parent tag with artifact spring-boot-starter-parent contains opionated maven set of configurations for each version.
+our project is child project of this parent.
+
+
+depandacy block -> spring-boot-starter-web
+
+properties -> java version - 1.8
+
+create a class with main method and add annotation @SpringBootApplication - this is starting point of application
+in main method call static method run to run the application SpringApplication.run(mainmethod.class, args)
+
+ convention over configuration - > 80% of work will be done by spring
+ sets up default configuration
+ starts spring application context
+ performs class path scan -> each class contain annotation / marker -> depanding on marker treat them differently. controller vs service.
+ Tomcat server come in built
+
+ controller classes help to handle request  method and response @RestController.
+
+ the resource /hello will trigger the method and method executes
+
+ @RequestMapping at method level -> path and method (HttpMethod.GET)
+
+
+ the @RestController will automatically covert return of a method to json format.
+
+ Parent section of POM -> spring-boot-starter-parent and its version tag tells what version of jars of depandacies section has to be download. -> bill of materials
+
+ embedded tomcat server.
+
+
+ spring mvc controller will map resource and its method  to appropriate request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

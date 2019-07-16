@@ -1,6 +1,7 @@
 package com.myproduct.products;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.myproduct.orders.Orders;
 import com.myproduct.users.User;
 import io.swagger.models.auth.In;
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+@JsonPropertyOrder(value = {
+        "id",
+        "name",
+        "price"
+})
 @Entity
 public class Product {
 
