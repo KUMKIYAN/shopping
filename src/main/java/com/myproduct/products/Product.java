@@ -1,13 +1,13 @@
 package com.myproduct.products;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.myproduct.orders.Orders;
-import com.myproduct.users.User;
-import io.swagger.models.auth.In;
-import org.springframework.stereotype.Component;
+
 
 import javax.persistence.*;
+import java.util.List;
 
 @JsonPropertyOrder(value = {
         "id",
@@ -21,16 +21,20 @@ public class Product {
     private Integer id;
     private String name;
     private float price;
-    private Integer qty;
+    private Long  availableQuantity;
+
+
+
+
 
     public Product(){}
 
 
-    public Product(Integer id, String name, float price, Integer qty) {
+    public Product(Integer id, String name, float price, Long availableQuantity) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.qty = qty;
+        this.availableQuantity = availableQuantity;
     }
 
     public Integer getId() {
@@ -57,13 +61,14 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getQty() {
-        return qty;
+    public Long getAvailableQuantity() {
+        return availableQuantity;
     }
 
-    public void setQty(Integer qty) {
-        this.qty = qty;
+    public void setAvailableQuantity(Long availableQuantity) {
+        this.availableQuantity = availableQuantity;
     }
+
 
     @Override
     public String toString() {
@@ -71,7 +76,6 @@ public class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", qty=" + qty + " kkkkkk" +
                 '}';
     }
 }

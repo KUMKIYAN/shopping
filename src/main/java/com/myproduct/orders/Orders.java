@@ -3,6 +3,7 @@ package com.myproduct.orders;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.myproduct.lineitem.LineItem;
 import com.myproduct.products.Product;
 import com.myproduct.users.User;
 
@@ -23,9 +24,8 @@ public class Orders {
     @JsonIgnore
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> products;
-
+    @OneToMany
+    List<LineItem> lineItems;
 
     public Integer getId() {
         return id;
@@ -51,20 +51,20 @@ public class Orders {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public float getOrderTotal() {
         return orderTotal;
     }
 
     public void setOrderTotal(float orderTotal) {
         this.orderTotal = orderTotal;
+    }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     @Override
