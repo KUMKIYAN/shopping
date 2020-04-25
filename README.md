@@ -210,8 +210,9 @@ To give robust info in api contract
 class 35: Actuator
 
 this helps which micro service is down.
-depandacies we need
- <artifactId>spring-boot-starter-actuator</artifactId> need to add in the pom.xml
+the below depandacies we need to add in the pom.xml
+ 
+ <artifactId>spring-boot-starter-actuator</artifactId>
 
  <dependency>
       <groupId>org.springframework.data</groupId>
@@ -220,7 +221,7 @@ depandacies we need
 
  hal - hypertext appliation language
 
-http://localhost:8080/actuator will give json repsonse.
+http://localhost:8080/actuator or http://localhost:8080/application or http:localhost:808 will give json repsonse.
 
 add below property in application.properties and will get nice UI.
 management.endpoint.web.exposure.include=*
