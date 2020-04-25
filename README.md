@@ -211,9 +211,11 @@ class 35: Actuator
 
 this helps which micro service is down.
 the below depandacies we need to add in the pom.xml
- 
- <artifactId>spring-boot-starter-actuator</artifactId>
 
+ <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+ </dependency>
  <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-rest-hal-browser</artifactId>
@@ -359,7 +361,6 @@ https://github.com/in28minutes/spring-microservices/tree/master/02.restful-web-s
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-
 ____________________________________________________________________________________________
 
 Spring boot by jetbrains Koushik.
@@ -368,7 +369,6 @@ production ready application in matter of mins. - > Restful application.
 
 in pom.xml add -> parent tag with artifact spring-boot-starter-parent contains opionated maven set of configurations for each version.
 our project is child project of this parent.
-
 
 depandacy block -> spring-boot-starter-web
 
@@ -383,34 +383,17 @@ in main method call static method run to run the application SpringApplication.r
  performs class path scan -> each class contain annotation / marker -> depanding on marker treat them differently. controller vs service.
  Tomcat server come in built
 
- controller classes help to handle request  method and response @RestController.
+controller classes help to handle request  method and response @RestController.
 
- the resource /hello will trigger the method and method executes
+the resource /hello will trigger the method and method executes
 
- @RequestMapping at method level -> path and method (HttpMethod.GET)
+@RequestMapping at method level -> path and method (HttpMethod.GET)
 
 
- the @RestController will automatically covert return of a method to json format.
+the @RestController will automatically covert return of a method to json format.
 
  Parent section of POM -> spring-boot-starter-parent and its version tag tells what version of jars of depandacies section has to be download. -> bill of materials
 
  embedded tomcat server.
 
-
- spring mvc controller will map resource and its method  to appropriate request.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+spring mvc controller will map resource and its method  to appropriate request.
