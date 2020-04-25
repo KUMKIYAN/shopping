@@ -226,7 +226,7 @@ http://localhost:8080/actuator or http://localhost:8080/application or http://lo
 add below property in application.properties and will get nice UI.
 management.endpoint.web.exposure.include=*
 
-http://localhost:8080/browser/index.html#/
+HAL UI: http://localhost:8080/browser/index.html#/
 
 explore "/actuator"
 
