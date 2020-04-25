@@ -221,7 +221,7 @@ the below depandacies we need to add in the pom.xml
 
  hal - hypertext appliation language
 
-http://localhost:8080/actuator or http://localhost:8080/application or http:localhost:808 will give json repsonse.
+http://localhost:8080/actuator or http://localhost:8080/application or http:localhost:8080 will give json repsonse.
 
 add below property in application.properties and will get nice UI.
 management.endpoint.web.exposure.include=*
