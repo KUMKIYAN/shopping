@@ -211,16 +211,17 @@ class 35: Actuator
 
 this helps which micro service is down.
 the below depandacies we need to add in the pom.xml
-
+```
  <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
  </dependency>
+ 
  <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-rest-hal-browser</artifactId>
  </dependency>
-
+```
  hal - hypertext appliation language
 
 http://localhost:8080/actuator or http://localhost:8080/application or http://localhost:8080 will give json repsonse.
